@@ -16,7 +16,7 @@ interface QuestionCardProps {
 }
 
 const QuestionCard = (props: QuestionCardProps) => {
-  const [isFavorite, setIsFavorite] = useState(props.question.isFavorite);
+  const [isFavorite, setIsFavorite] = useState(props.question.is_favorite);
   const text = props.question.text.includes("WILDCARD: ")
     ? props.question.text.split("WILDCARD: ")[1]
     : props.question.text;
@@ -37,7 +37,7 @@ const QuestionCard = (props: QuestionCardProps) => {
           </Row>
           <Center>
             <Column align="center" gap={8}>
-              {props.question.isWildcard && (
+              {props.question.is_wildcard && (
                 <WildcardText>Wildcard</WildcardText>
               )}
               <QuestionText>{text}</QuestionText>

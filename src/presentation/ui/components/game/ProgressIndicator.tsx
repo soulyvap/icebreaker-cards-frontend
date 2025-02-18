@@ -5,12 +5,11 @@ import Icon from "react-native-vector-icons/MaterialIcons";
 import { observer } from "mobx-react-lite";
 import { useDI } from "../../../../di/DIContext";
 import Row from "../common/Row";
-import Center from "../common/Center";
 import Padding from "../common/Padding";
 
 const ProgressIndicator = observer(() => {
   const { gameViewModel } = useDI();
-  const { cardIndex, questions, nextCard, prevCard } = gameViewModel;
+  const { cardIndex, questionsDisplayed, nextCard, prevCard } = gameViewModel;
 
   return (
     <Padding padding={16}>
@@ -24,17 +23,19 @@ const ProgressIndicator = observer(() => {
         </ArrowButton>
 
         <ProgressText>
-          {cardIndex + 1} / {questions.length}
+          {cardIndex + 1} / {questionsDisplayed.length}
         </ProgressText>
 
         <ArrowButton
           onPress={nextCard}
-          disabled={cardIndex === questions.length - 1}
+          disabled={cardIndex === questionsDisplayed.length - 1}
         >
           <Icon
             name="arrow-right"
             size={30}
-            color={cardIndex === questions.length - 1 ? "#ccc" : "white"}
+            color={
+              cardIndex === questionsDisplayed.length - 1 ? "#ccc" : "white"
+            }
           />
         </ArrowButton>
       </Row>

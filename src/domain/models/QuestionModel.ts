@@ -4,16 +4,15 @@
  * @property {number} id - Unique identifier
  * @property {string} text - Question text
  * @property {number} level - Difficulty level
- * @property {boolean} isFavorite - Whether the user marked it as a favorite
- * @property {boolean} isWildcard - Special question flag
- * @property {boolean} isSynced - Indicates if the question is synced with remote DB
- * @property {number} lastModified - Timestamp of last modification
+ * @property {boolean} is_favorite - Whether the user marked it as a favorite
+ * @property {boolean} is_wildcard - Special question flag
+ * @property {boolean} is_default - Default question flag
  */
 export interface QuestionModel {
   id: number;
   text: string;
   level: number;
-  isFavorite: boolean;
-  isWildcard: boolean;
-  isDefault: boolean;
+  is_favorite: boolean;
+  is_wildcard: boolean;
+  is_default: boolean;
 }

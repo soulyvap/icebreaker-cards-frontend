@@ -27,7 +27,7 @@ const CardCarousel = observer(() => {
       defaultIndex={gameViewModel.cardIndex}
       width={width}
       height={height * 0.8}
-      data={gameViewModel.questions}
+      data={gameViewModel.questionsDisplayed}
       renderItem={({ item }) => (
         <QuestionCard
           key={item.id}

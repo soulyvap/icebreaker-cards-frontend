@@ -16,15 +16,20 @@ const ListSwitcher = observer(() => {
       case 2:
         return questions.filter((q) => q.level === 3);
       case 3:
-        return questions.filter((q) => !q.isDefault);
+        return questions.filter((q) => !q.is_default);
       case 4:
-        return questions.filter((q) => q.isFavorite);
+        return questions.filter((q) => q.is_favorite);
       default:
         return [];
     }
   };
 
-  return <QuestionList questions={getQuestions()} />;
+  return (
+    <QuestionList
+      questions={getQuestions()}
+      listIndex={managementViewModel.selectedListIndex}
+    />
+  );
 });
 
 export default ListSwitcher;

@@ -1,50 +1,71 @@
 import { makeAutoObservable, runInAction, set } from "mobx";
 import { QuestionModel } from "../../domain/models/QuestionModel";
 import { AddQuestionUseCase } from "../../domain/usecases/AddQuestionUseCase";
-import { GetQuestionsUseCase } from "../../domain/usecases/GetQuestionsUseCase";
-import { LikeDislikeQuestionUseCase } from "../../domain/usecases/LikeDislikeQuestionUseCase";
+import { UpdateQuestionUseCase } from "../../domain/usecases/UpdateQuestionUseCase";
+import { DeleteQuestionUseCase } from "../../domain/usecases/DeleteQuestionUseCase";
+import { GetAllQuestionsUseCase } from "../../domain/usecases/GetAllQuestionsUseCase";
+import { AddFavoriteUseCase } from "../../domain/usecases/AddFavoriteUseCase";
+import { DeleteFavoriteUseCase } from "../../domain/usecases/DeleteFavoriteUseCase";
+
+const defaultQuestion: QuestionModel = {
+  id: 0,
+  text: "",
+  level: 1,
+  is_favorite: true,
+  is_wildcard: false,
+  is_default: false,
+};
 
 export class ManagementViewModel {
-  private getQuestionsUseCase: GetQuestionsUseCase;
+  private getAllQuestionsUseCase: GetAllQuestionsUseCase;
   private addQuestionUseCase: AddQuestionUseCase;
-  private likeDislikeQuestionUseCase: LikeDislikeQuestionUseCase;
+  private updateQuestionUseCase: UpdateQuestionUseCase;
+  private deleteQuestionUseCase: DeleteQuestionUseCase;
+  private addFavoriteUseCase: AddFavoriteUseCase;
+  private deleteFavoriteUseCase: DeleteFavoriteUseCase;
+
   questions: QuestionModel[] = [];
   loading: boolean = false;
   selectedListIndex: number = 0;
-  newQuestion: QuestionModel = {
-    id: 0,
-    text: "",
-    level: 1,
-    isFavorite: true,
-    isWildcard: false,
-    isDefault: false
-  };
+  newQuestion: QuestionModel = defaultQuestion;
+  input: string = "";
   showDialog: boolean = false;
+  dialogMode: "add" | "edit" = "add";
 
   constructor({
-    getQuestionsUseCase,
+    getAllQuestionsUseCase,
     addQuestionUseCase,
-    likeDislikeQuestionUseCase,
+    updateQuestionUseCase,
+    deleteQuestionUseCase,
+    addFavoriteUseCase,
+    deleteFavoriteUseCase,
   }: {
-    getQuestionsUseCase: GetQuestionsUseCase;
+    getAllQuestionsUseCase: GetAllQuestionsUseCase;
     addQuestionUseCase: AddQuestionUseCase;
-    likeDislikeQuestionUseCase: LikeDislikeQuestionUseCase;
+    updateQuestionUseCase: UpdateQuestionUseCase;
+    deleteQuestionUseCase: DeleteQuestionUseCase;
+    addFavoriteUseCase: AddFavoriteUseCase;
+    deleteFavoriteUseCase: DeleteFavoriteUseCase;
   }) {
     makeAutoObservable(this);
-    this.getQuestionsUseCase = getQuestionsUseCase;
+    this.getAllQuestionsUseCase = getAllQuestionsUseCase;
     this.addQuestionUseCase = addQuestionUseCase;
-    this.likeDislikeQuestionUseCase = likeDislikeQuestionUseCase;
-    this.loadQuestions();
+    this.updateQuestionUseCase = updateQuestionUseCase;
+    this.deleteQuestionUseCase = deleteQuestionUseCase;
+    this.addFavoriteUseCase = addFavoriteUseCase;
+    this.deleteFavoriteUseCase = deleteFavoriteUseCase;
   }
 
   async loadQuestions() {
     this.loading = true;
     try {
-      const questions = await this.getQuestionsUseCase.execute();
-      questions.sort((a, b) => Number(a.isDefault) - Number(b.isDefault))
-      set(this, {
-        questions: questions,
-        loading: false,
+      const questions = await this.getAllQuestionsUseCase.execute();
+      runInAction(() => {
+        this.questions = questions;
+        this.questions.sort(
+          (a, b) => Number(a.is_default) - Number(b.is_default)
+        );
+        this.loading = false;
       });
     } catch (err) {
       console.error(err);
@@ -53,16 +74,29 @@ export class ManagementViewModel {
 
   addQuestion = async () => {
     try {
-      await this.addQuestionUseCase.execute(this.newQuestion);
+      const added = await this.addQuestionUseCase.execute(this.newQuestion);
+      if (added) {
+        runInAction(() => {
+          this.questions = [...this.questions, added];
+          this.questions.sort(
+            (a, b) => Number(a.is_default) - Number(b.is_default)
+          );
+          this.newQuestion = defaultQuestion;
+        });
+      }
     } catch (err) {
       console.error(err);
     }
-  }
+  };
 
   async toggleFavorite(question: QuestionModel, isFavorite: boolean) {
     try {
-      this.updateQuestionInState(question, { isFavorite });
-      await this.likeDislikeQuestionUseCase.execute(question, isFavorite);
+      this.updateQuestionInState(question, { is_favorite: isFavorite });
+      if (isFavorite) {
+        await this.addFavoriteUseCase.execute(question.id);
+      } else {
+        await this.deleteFavoriteUseCase.execute(question.id);
+      }
     } catch (err) {
       console.error(err);
     }
@@ -87,30 +121,57 @@ export class ManagementViewModel {
     set(this, {
       selectedListIndex: index,
     });
-  }
+  };
 
   editNewQuestion = (update: Partial<QuestionModel>) => {
     set(this, {
       newQuestion: { ...this.newQuestion, ...update },
     });
-  }
+  };
 
   resetNewQuestion = () => {
     set(this, {
-      newQuestion: {
-        id: 0,
-        text: "",
-        level: 1,
-        isFavorite: true,
-        isWildcard: false,
-        isDefault: false,
-      },
+      newQuestion: defaultQuestion,
     });
-  }
+  };
 
   toggleDialog = () => {
     set(this, {
       showDialog: !this.showDialog,
+    });
+  };
+
+  setDialogMode = (mode: "add" | "edit") => {
+    set(this, {
+      dialogMode: mode,
+    });
+  };
+
+  async updateQuestion(question: QuestionModel) {
+    try {
+      await this.updateQuestionUseCase.execute(question);
+      this.updateQuestionInState(question, question);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  async deleteQuestion(id: number) {
+    try {
+      runInAction(() => {
+        const newList = this.questions.filter((question) => question.id !== id);
+        this.questions = newList;
+        this.newQuestion = defaultQuestion;
+      });
+      await this.deleteQuestionUseCase.execute(id);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  clearQuestions() {
+    runInAction(() => {
+      this.questions = [];
     });
   }
 }
