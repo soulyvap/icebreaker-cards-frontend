@@ -2,6 +2,9 @@ import { QuestionRepository } from "../../domain/repositories/QuestionRepository
 import { QuestionModel } from "../../domain/models/QuestionModel";
 import { ApiService } from "../remote/ApiService";
 
+/**
+ * The Question repository implementation
+ */
 export class QuestionRepositoryImpl implements QuestionRepository {
   getFavoriteQuestions(): Promise<QuestionModel[]> {
     throw new Error("Method not implemented.");

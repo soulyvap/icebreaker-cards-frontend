@@ -1,6 +1,5 @@
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
+import { Text, TouchableOpacity } from "react-native";
 import React from "react";
-import Center from "../common/Center";
 import BasicButton from "../common/BasicButton";
 import Column from "../common/Column";
 import OutlinedButton from "../common/OutlinedButton";
@@ -13,6 +12,10 @@ import Icon from "react-native-vector-icons/MaterialIcons";
 import Padding from "../common/Padding";
 import Flex from "../common/Flex";
 
+/**
+ * The login form for the authentication flow.
+ * Contains the email and password fields.
+ */
 const RegisterForm = observer(() => {
   const { authViewModel } = useDI();
 

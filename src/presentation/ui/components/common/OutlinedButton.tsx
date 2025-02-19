@@ -27,6 +27,9 @@ const ButtonText = styled.Text<{ color?: string; fontSize?: number }>`
   font-weight: bold;
 `;
 
+/**
+ * An outlined button component.
+ */
 const OutlinedButton: React.FC<OutlinedButtonProps> = ({
   title,
   onPress,

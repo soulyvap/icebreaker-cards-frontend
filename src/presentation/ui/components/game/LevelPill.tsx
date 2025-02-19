@@ -7,6 +7,9 @@ interface LevelPillProps {
   level: number;
 }
 
+/**
+ * A level pill component. Indicates the level question.
+ */
 const LevelPill = (props: LevelPillProps) => {
   return (
     <Card

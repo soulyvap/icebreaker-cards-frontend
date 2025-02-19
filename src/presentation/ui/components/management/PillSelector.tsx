@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, FlatList } from "react-native";
+import { Text, TouchableOpacity, FlatList } from "react-native";
 import React from "react";
 import Card from "../common/Card";
 import { getPastelColor } from "../../colors/pastel";
@@ -45,6 +45,10 @@ const data: PillSelectorItemProps[] = [
   },
 ];
 
+/**
+ * A pill selector component.
+ * Contains the list of levels and custom questions.
+ */
 const PillSelector = observer(() => {
   const { managementViewModel } = useDI();
   const selectedListIndex = managementViewModel.selectedListIndex;

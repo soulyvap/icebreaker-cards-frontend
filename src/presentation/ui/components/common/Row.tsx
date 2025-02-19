@@ -26,6 +26,9 @@ const RowContainer = styled.View<RowProps>`
   height: ${(props: RowProps) => props.height || "auto"};
 `;
 
+/**
+ * A row layout component.
+ */
 const Row: React.FC<RowProps> = ({
   align,
   justify,

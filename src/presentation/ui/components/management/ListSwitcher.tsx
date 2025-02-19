@@ -3,6 +3,10 @@ import { observer } from "mobx-react-lite";
 import { useDI } from "../../../../di/DIContext";
 import QuestionList from "./QuestionList";
 
+/**
+ * The list switcher for the management screen.
+ * Contains the list of questions based on the selected list index.
+ */
 const ListSwitcher = observer(() => {
   const { managementViewModel } = useDI();
   const questions = managementViewModel.questions;

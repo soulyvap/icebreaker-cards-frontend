@@ -2,6 +2,9 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AuthRepository } from "../../domain/repositories/AuthRepository";
 import { ApiService } from "../remote/ApiService";
 
+/**
+ * The Auth repository implementation
+ */
 export class AuthRepositoryImpl implements AuthRepository {
 
   async login(email: string, password: string): Promise<boolean | string> {

@@ -7,6 +7,9 @@ import {API_URL} from "@env";
 
 const CURRENT_API_URL = API_URL;
 
+/**
+ * The API service. Interacts with the Express/Postgres backend.
+ */
 export class ApiService {
 
   static async register({

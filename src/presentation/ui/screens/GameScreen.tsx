@@ -15,6 +15,10 @@ import { RootStackParamList } from "../../navigation/types";
 
 type GameScreenNavigationProp = StackNavigationProp<RootStackParamList, "Game">;
 
+/**
+ * The main screen for the game.
+ * Contains the card carousel and progress indicator.
+ */
 const GameScreen = observer(() => {
   const navigation = useNavigation<GameScreenNavigationProp>();
   const { gameViewModel } = useDI();

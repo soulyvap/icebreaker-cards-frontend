@@ -7,6 +7,9 @@ interface FloatingButtonProps {
   color?: string;
 }
 
+/**
+ * A floating action button component.
+ */
 const FloatingButton = (props: FloatingButtonProps) => {
   return (
     <FABContainer
@@ -19,7 +22,6 @@ const FloatingButton = (props: FloatingButtonProps) => {
   );
 };
 
-// Styled-components for FAB
 const FABContainer = styled.TouchableOpacity<FloatingButtonProps>`
   position: absolute;
   bottom: 20px;

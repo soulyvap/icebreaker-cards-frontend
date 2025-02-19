@@ -1,5 +1,8 @@
 import { AuthRepository } from "../repositories/AuthRepository";
 
+/**
+ * Use case to login
+ */
 export class LoginUseCase {
   constructor(private authRepository: AuthRepository) {}
 

@@ -10,7 +10,9 @@ interface CheckboxProps {
   label?: string;
 }
 
-// Checkbox Component
+/**
+ * A checkbox component.
+ */
 const Checkbox = (props: CheckboxProps) => {
   return (
     <CheckboxContainer onPress={props.onPress} activeOpacity={0.7}>

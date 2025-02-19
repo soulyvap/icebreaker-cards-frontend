@@ -31,6 +31,9 @@ const CardContainer = styled.View<CardProps>`
   border-width: 1px;
 `;
 
+/**
+ * A material-like card component.
+ */
 const Card: React.FC<CardProps> = ({
   children,
   elevation,

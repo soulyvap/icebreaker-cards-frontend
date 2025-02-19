@@ -27,6 +27,9 @@ const ButtonText = styled.Text<{ color?: string; fontSize?: number }>`
   font-weight: bold;
 `;
 
+/**
+ * A basic button component.
+ */
 const BasicButton: React.FC<BasicButtonProps> = ({
   title,
   onPress,

@@ -7,6 +7,9 @@ interface DialogProps {
   children: React.ReactNode;
 }
 
+/**
+ * A dialog component.
+ */
 const Dialog = (props: DialogProps) => {
   return (
     <Modal transparent visible={props.visible} animationType="fade">

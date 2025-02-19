@@ -33,6 +33,9 @@ const PaddingContainer = styled.View<PaddingProps>`
       : "unset"};
 `;
 
+/**
+ * A padding layout component.
+ */
 const Padding: React.FC<PaddingProps> = ({ children, ...rest }) => {
   return <PaddingContainer {...rest}>{children}</PaddingContainer>;
 };

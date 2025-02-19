@@ -1,6 +1,9 @@
 import { QuestionModel } from "../models/QuestionModel";
 import { QuestionRepository } from "../repositories/QuestionRepository";
 
+/**
+ * Use case to add a question
+ */
 export class AddQuestionUseCase {
   constructor(private questionRepo: QuestionRepository) {}
 

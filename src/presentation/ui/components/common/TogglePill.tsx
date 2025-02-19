@@ -1,4 +1,4 @@
-import { Text, TouchableOpacity } from "react-native";
+import { TouchableOpacity } from "react-native";
 import React from "react";
 import Card from "./Card";
 import styled from "styled-components/native";
@@ -14,6 +14,9 @@ interface TogglePillProps {
   onPress: () => void;
 }
 
+/**
+ * A toggle pill component. Allows to switch between different values in a loop.
+ */
 const TogglePill = (props: TogglePillProps) => {
   const value = props.items[props.index].value;
   const color = props.items[props.index].color;

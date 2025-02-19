@@ -5,6 +5,9 @@ import { LogoutUseCase } from "../../domain/usecases/LogoutUseCase";
 import { RegisterUseCase } from "../../domain/usecases/RegisterUseCase";
 import { RefreshAccessTokenUseCase } from "../../domain/usecases/RefreshAccessTokenUseCase";
 
+/**
+ * ViewModel for the Auth screen
+ */
 export class AuthViewModel {
   private checkAuthUseCase: CheckAuthUseCase;
   private loginUseCase: LoginUseCase;

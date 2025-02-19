@@ -1,6 +1,9 @@
 import { FavoriteRepository } from "../../domain/repositories/FavoriteRespository";
 import { ApiService } from "../remote/ApiService";
 
+/**
+ * The Favorite repository implementation
+ */
 export class FavoriteRepositoryImpl implements FavoriteRepository {
   async addFavorite(questionId: number): Promise<boolean> {
     try {

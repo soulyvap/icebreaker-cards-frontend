@@ -12,6 +12,10 @@ import Padding from "../common/Padding";
 import Flex from "../common/Flex";
 import Icon from "react-native-vector-icons/MaterialIcons";
 
+/**
+ * The login form for the authentication flow.
+ * Contains the email and password fields.
+ */
 const LoginForm = observer(() => {
   const { authViewModel } = useDI();
 

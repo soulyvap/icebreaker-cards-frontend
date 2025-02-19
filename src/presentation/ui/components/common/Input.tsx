@@ -24,6 +24,9 @@ const InputContainer = styled.View<{ borderColor?: string }>`
   gap: 8px;
 `;
 
+/**
+ * A text input component.
+ */
 const Input: React.FC<InputProps> = ({
   leading,
   trailing,

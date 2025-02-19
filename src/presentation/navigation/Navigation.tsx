@@ -13,6 +13,9 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 const Stack = createStackNavigator();
 
+/**
+ * Stack of screens for authenticated users.
+ */
 const AuthenticatedStack = () => {
   return (
     <Stack.Navigator>
@@ -23,6 +26,9 @@ const AuthenticatedStack = () => {
   );
 };
 
+/**
+ * Stack of screens for unauthenticated users.
+ */
 const UnauthenticatedStack = () => {
   return (
     <Stack.Navigator>
@@ -40,6 +46,10 @@ const UnauthenticatedStack = () => {
   );
 };
 
+/**
+ * The main navigation component.
+ * Contains the authenticated and unauthenticated stacks.
+ */
 const Navigation = observer(() => {
   const { authViewModel } = useDI();
   const isAuthenticated = authViewModel.isAuthenticated;

@@ -1,11 +1,12 @@
-import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
 import { DIProvider } from "./di/DIContext";
 import { ScreenSizeProvider } from "./context/ScreenSizeContext";
 import Navigation from "./presentation/navigation/Navigation";
 
-const Stack = createStackNavigator();
-
+/**
+ * The root component of the application.
+ * Contains the DIProvider, ScreenSizeProvider and Navigation.
+ */
 export default function App() {
   return (
     <DIProvider>

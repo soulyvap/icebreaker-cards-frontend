@@ -12,6 +12,10 @@ interface QuestionListProps {
   listIndex: number;
 }
 
+/**
+ * A list of questions.
+ * Displays a list of questions with the ability to favorite and edit them.
+ */
 const QuestionList = (props: QuestionListProps) => {
   const { managementViewModel } = useDI();
   const listIndex = props.listIndex;

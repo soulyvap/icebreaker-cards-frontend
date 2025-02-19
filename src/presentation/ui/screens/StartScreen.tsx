@@ -23,6 +23,10 @@ type StartScreenNavigationProp = StackNavigationProp<
   "Start"
 >;
 
+/**
+ * The main screen for the start of the game.
+ * Contains the start button, manage questions button and logout button.
+ */
 const StartScreen = observer(() => {
   const navigation = useNavigation<StartScreenNavigationProp>();
   const { gameViewModel, managementViewModel, authViewModel } = useDI();

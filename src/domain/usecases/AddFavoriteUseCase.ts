@@ -1,5 +1,8 @@
 import { FavoriteRepository } from "../repositories/FavoriteRespository";
 
+/**
+ * Use case to add a question to the favorite list
+ */
 export class AddFavoriteUseCase {
   constructor(private favoriteRepository: FavoriteRepository) {}
 

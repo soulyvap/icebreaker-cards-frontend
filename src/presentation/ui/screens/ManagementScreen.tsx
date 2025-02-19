@@ -9,6 +9,10 @@ import FloatingActionButton from "../components/common/FloatingActionButton";
 import { getPastelColor } from "../colors/pastel";
 import AddQuestionDialog from "../components/management/AddQuestionDialog";
 
+/**
+ * The main screen for the management.
+ * Contains the pill selector, list switcher and add question dialog.
+ */
 const ManagementScreen = observer(() => {
   const { managementViewModel, gameViewModel } = useDI();
 

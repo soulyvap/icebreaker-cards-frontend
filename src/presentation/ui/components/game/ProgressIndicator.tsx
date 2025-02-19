@@ -7,6 +7,10 @@ import { useDI } from "../../../../di/DIContext";
 import Row from "../common/Row";
 import Padding from "../common/Padding";
 
+/**
+ * The progress indicator for the game.
+ * Contains the current card index and total cards.
+ */
 const ProgressIndicator = observer(() => {
   const { gameViewModel } = useDI();
   const { cardIndex, questionsDisplayed, nextCard, prevCard } = gameViewModel;

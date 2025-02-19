@@ -7,6 +7,9 @@ import { GetAllQuestionsUseCase } from "../../domain/usecases/GetAllQuestionsUse
 import { AddFavoriteUseCase } from "../../domain/usecases/AddFavoriteUseCase";
 import { DeleteFavoriteUseCase } from "../../domain/usecases/DeleteFavoriteUseCase";
 
+/**
+ * ViewModel for the management screen
+ */
 const defaultQuestion: QuestionModel = {
   id: 0,
   text: "",

@@ -14,6 +14,9 @@ import { Ionicons } from "@expo/vector-icons";
 import Flex from "../common/Flex";
 import styled from "styled-components/native";
 
+/**
+ * The dialog for adding a new question.
+ */
 const AddQuestionDialog = observer(() => {
   const { managementViewModel } = useDI();
   const newQuestion = managementViewModel.newQuestion;

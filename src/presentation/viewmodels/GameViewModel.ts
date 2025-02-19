@@ -5,6 +5,9 @@ import { GetAllQuestionsUseCase } from "../../domain/usecases/GetAllQuestionsUse
 import { AddFavoriteUseCase } from "../../domain/usecases/AddFavoriteUseCase";
 import { DeleteFavoriteUseCase } from "../../domain/usecases/DeleteFavoriteUseCase";
 
+/**
+ * ViewModel for the game screen
+ */
 export class GameViewModel {
   private getAllQuestionsUseCase: GetAllQuestionsUseCase;
   private addFavoriteUseCase: AddFavoriteUseCase;

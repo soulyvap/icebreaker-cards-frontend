@@ -5,6 +5,9 @@ import { useScreenSize } from "../../../../context/ScreenSizeContext";
 import QuestionCard from "./QuestionCard";
 import { observer } from "mobx-react-lite";
 
+/**
+ * The carousel for the questions.
+ */
 const CardCarousel = observer(() => {
   const { gameViewModel } = useDI();
   const { width, height } = useScreenSize();

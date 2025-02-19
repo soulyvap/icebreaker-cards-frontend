@@ -10,6 +10,9 @@ const FlexContainer = styled.View<FlexProps>`
   flex: ${(props: FlexProps) => props.flex || 1};
 `;
 
+/**
+ * A flex layout component.
+ */
 const Flex: React.FC<FlexProps> = ({ flex, children, ...rest }) => {
   return (
     <FlexContainer flex={flex} {...rest}>

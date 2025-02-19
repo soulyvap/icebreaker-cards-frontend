@@ -1,5 +1,8 @@
 import { FavoriteRepository } from "../repositories/FavoriteRespository";
 
+/**
+ * Use case to delete a favorite question
+ */
 export class DeleteFavoriteUseCase {
   constructor(private favoriteRepository: FavoriteRepository) {}
 

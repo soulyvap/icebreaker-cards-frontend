@@ -26,6 +26,9 @@ const ColumnContainer = styled.View<ColumnProps>`
   background-color: ${(props: ColumnProps) => props.color || "transparent"};
 `;
 
+/**
+ * A column layout component.
+ */
 const Column: React.FC<ColumnProps> = ({
   align,
   justify,

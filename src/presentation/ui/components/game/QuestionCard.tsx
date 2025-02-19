@@ -15,6 +15,9 @@ interface QuestionCardProps {
   toggleFavorite: (isFavorite: boolean) => void;
 }
 
+/**
+ * A question card component. Displays a question with level and favorite button.
+ */
 const QuestionCard = (props: QuestionCardProps) => {
   const [isFavorite, setIsFavorite] = useState(props.question.is_favorite);
   const text = props.question.text.includes("WILDCARD: ")

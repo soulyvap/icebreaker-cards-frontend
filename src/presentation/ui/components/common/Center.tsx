@@ -12,6 +12,9 @@ const CenterContainer = styled.View<CenterProps>`
   flex: ${(props: CenterProps) => (props.fullScreen ? 1 : "auto")};
 `;
 
+/**
+ * A centering component.
+ */
 const Center: React.FC<CenterProps> = ({
   fullScreen = false,
   children,

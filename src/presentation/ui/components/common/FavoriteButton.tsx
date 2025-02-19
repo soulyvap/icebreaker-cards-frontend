@@ -10,6 +10,9 @@ interface FavoriteButtonProps {
   color?: string;
 }
 
+/**
+ * A favorite button component. Toggles between favorite and not favorite states.
+ */
 const FavoriteButton: React.FC<FavoriteButtonProps> = ({
   isFavorite,
   onToggle,

@@ -12,6 +12,9 @@ interface QuestionListTileProps {
   onPress?: () => void;
 }
 
+/**
+ * A question list tile component. Displays a question with favorite button.
+ */
 const QuestionListTile = (props: QuestionListTileProps) => {
   const questionText = props.question.text;
   const isWildcard = props.question.is_wildcard;

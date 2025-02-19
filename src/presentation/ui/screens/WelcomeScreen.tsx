@@ -16,6 +16,11 @@ type WelcomeScreenNavigationProps = StackNavigationProp<
   RootStackParamList,
   "Welcome"
 >;
+
+/**
+ * The welcome screen of the application.
+ * Contains the logo, title, subtitle and get started button.
+ */
 const WelcomeScreen = () => {
   const navigation = useNavigation<WelcomeScreenNavigationProps>();
   return (
