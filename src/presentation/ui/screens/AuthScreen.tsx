@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { observer } from "mobx-react-lite";
 import { useDI } from "../../../di/DIContext";
 import LoginForm from "../components/auth/LoginForm";
 import RegisterForm from "../components/auth/RegisterForm";
 
 const AuthScreen = observer(() => {
-  const { authViewModel } = useDI();
+  const { authViewModel, gameViewModel } = useDI();
   const mode = authViewModel.mode;
+
+  useEffect(() => {
+    gameViewModel.setNeedsReload(true);
+  }, []);
 
   switch (mode) {
     case "login":

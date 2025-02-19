@@ -5,13 +5,12 @@ import BasicButton from "../components/common/BasicButton";
 import Center from "../components/common/Center";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { RootStackParamList } from "../navigation/types";
 import Flex from "../components/common/Flex";
 import Padding from "../components/common/Padding";
-import styled from "styled-components/native";
 import { Heading } from "../components/common/Heading";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import Card from "../components/common/Card";
+import { RootStackParamList } from "../../navigation/types";
 
 type WelcomeScreenNavigationProps = StackNavigationProp<
   RootStackParamList,

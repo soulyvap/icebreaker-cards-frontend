@@ -3,12 +3,9 @@ import { QuestionModel } from "../../domain/models/QuestionModel";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { jwtDecode } from "jwt-decode";
 import { ApiResponse } from "../models/ApiResponse";
-import CryptoJS from "crypto-js";
-import { 
-  LOCAL_IP, API_PORT, API_BASE_PATH
- } from "@env";
+import {API_URL} from "@env";
 
-const API_BASE_URL = `http://${LOCAL_IP}:${API_PORT}/${API_BASE_PATH}`;
+const CURRENT_API_URL = API_URL;
 
 export class ApiService {
 
@@ -21,7 +18,7 @@ export class ApiService {
   }): Promise<ApiResponse<{ id: number; email: string }>> {
     try {
 
-      const response = await axios.post(`${API_BASE_URL}/register`, {
+      const response = await axios.post(`${CURRENT_API_URL}/register`, {
         email,
         password,
       });
@@ -48,7 +45,7 @@ export class ApiService {
   }): Promise<ApiResponse<{ accessToken: string; refreshToken: string }>> {
     try {
 
-      const response = await axios.post(`${API_BASE_URL}/login`, {
+      const response = await axios.post(`${CURRENT_API_URL}/login`, {
         email,
         password,
       });
@@ -75,7 +72,7 @@ export class ApiService {
       throw new Error("No refresh token found");
     }
     try {
-      const response = await axios.post(`${API_BASE_URL}/refresh`, {
+      const response = await axios.post(`${CURRENT_API_URL}/refresh`, {
         refreshToken,
       });
       await AsyncStorage.setItem("accessToken", response.data.accessToken);
@@ -91,7 +88,7 @@ export class ApiService {
 
   static async logout() {
     const refreshToken = await AsyncStorage.getItem("refreshToken");
-    await axios.post(`${API_BASE_URL}/logout`, { refreshToken });
+    await axios.post(`${CURRENT_API_URL}/logout`, { refreshToken });
   }
 
   /**
@@ -128,9 +125,10 @@ export class ApiService {
 
   static async getAllQuestions() {
     const token = await this.checkToken();
+    console.log(CURRENT_API_URL)
 
     try {
-      const url = `${API_BASE_URL}/questions`;
+      const url = `${CURRENT_API_URL}/questions`;
       const response = await axios.get(url, {
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -145,7 +143,7 @@ export class ApiService {
     const token = await this.checkToken();
 
     try {
-      const response = await axios.post(`${API_BASE_URL}/questions`, question, {
+      const response = await axios.post(`${CURRENT_API_URL}/questions`, question, {
         headers: { Authorization: `Bearer ${token}` },
       });
       return response.data;
@@ -160,7 +158,7 @@ export class ApiService {
 
     try {
       const response = await axios.put(
-        `${API_BASE_URL}/questions/${question.id}`,
+        `${CURRENT_API_URL}/questions/${question.id}`,
         question,
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -177,7 +175,7 @@ export class ApiService {
     const token = await this.checkToken();
 
     try {
-      const response = await axios.delete(`${API_BASE_URL}/questions/${id}`, {
+      const response = await axios.delete(`${CURRENT_API_URL}/questions/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       return response.data;
@@ -192,7 +190,7 @@ export class ApiService {
 
     try {
       const response = await axios.post(
-        `${API_BASE_URL}/favorites`,
+        `${CURRENT_API_URL}/favorites`,
         { question_id: questionId },
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -209,7 +207,7 @@ export class ApiService {
     const token = await this.checkToken();
 
     try {
-      const response = await axios.delete(`${API_BASE_URL}/favorites`, {
+      const response = await axios.delete(`${CURRENT_API_URL}/favorites`, {
         headers: { Authorization: `Bearer ${token}` },
         data: { question_id: questionId },
       });

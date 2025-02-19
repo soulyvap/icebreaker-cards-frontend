@@ -8,7 +8,6 @@ import {
 import React, { useCallback, useEffect, useMemo } from "react";
 import Column from "../components/common/Column";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { RootStackParamList } from "../navigation/types";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { useDI } from "../../../di/DIContext";
 import { observer } from "mobx-react-lite";
@@ -17,6 +16,7 @@ import Row from "../components/common/Row";
 import OutlinedButton from "../components/common/OutlinedButton";
 import Padding from "../components/common/Padding";
 import Flex from "../components/common/Flex";
+import { RootStackParamList } from "../../navigation/types";
 
 type StartScreenNavigationProp = StackNavigationProp<
   RootStackParamList,

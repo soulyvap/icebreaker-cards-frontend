@@ -3,7 +3,6 @@ import Column from "../components/common/Column";
 import ProgressIndicator from "../components/game/ProgressIndicator";
 import CardCarousel from "../components/game/CardCarousel";
 import { useNavigation } from "@react-navigation/native";
-import { RootStackParamList } from "../navigation/types";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { ActivityIndicator, Text } from "react-native";
 import { useDI } from "../../../di/DIContext";
@@ -12,6 +11,7 @@ import { getPastelColor } from "../colors/pastel";
 import { observer } from "mobx-react-lite";
 import OutlinedButton from "../components/common/OutlinedButton";
 import Center from "../components/common/Center";
+import { RootStackParamList } from "../../navigation/types";
 
 type GameScreenNavigationProp = StackNavigationProp<RootStackParamList, "Game">;
 

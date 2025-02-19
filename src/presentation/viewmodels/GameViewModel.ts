@@ -34,7 +34,6 @@ export class GameViewModel {
   }
 
   loadQuestions = async () => {
-    console.log("reloading")
     runInAction(() => {
       this.loading = true;
     });
