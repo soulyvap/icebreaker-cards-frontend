@@ -135,6 +135,12 @@ export class GameViewModel {
     const question = this.questionsDisplayed[index];
     const updatedQuestion = { ...question, ...update };
     set(this.questionsDisplayed, index, updatedQuestion);
+    const indexInLoaded = this.questionsLoaded.findIndex(
+      (q) => q.id === question.id
+    );
+    if (indexInLoaded !== -1) {
+      set(this.questionsLoaded, indexInLoaded, updatedQuestion);
+    }
   };
 
   toggleFavorite = (isFavorite: boolean) => {
