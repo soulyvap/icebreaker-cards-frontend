@@ -44,7 +44,7 @@ Ensure you have the following installed:
    ```
 3. Set up environment variables: Create a `.env` file in the root directory and define the API URL:
    ```env
-   API_URL=https://icebreaker-cards-backend.onrender.com/api
+   API_URL=your_api_url
    ```
 4. Start the development server:
    ```sh
